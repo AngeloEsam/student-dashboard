@@ -21,7 +21,7 @@ import {
   Alert,
   CircularProgress,
 } from '@mui/material';
-
+import { useTranslation } from 'react-i18next';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -50,6 +50,8 @@ const MainDashboard = () => {
     message: '',
     severity: 'success',
   });
+  const { t } = useTranslation();
+
 
   const fetchQuizzes = async () => {
     try {
@@ -150,7 +152,7 @@ const MainDashboard = () => {
           color="primary"
           sx={{ fontSize: { xs: '1.8rem', sm: '2.5rem', md: '3rem' }, flexGrow: 1 }}
         >
-          Quizzes Dashboard
+          {t('quizzesDashboard')}
         </Typography>
         <Button
           variant="contained"
@@ -158,7 +160,7 @@ const MainDashboard = () => {
           onClick={() => handleOpenDialog()}
           sx={{ bgcolor: 'primary.main', '&:hover': { bgcolor: 'primary.dark' }, flexShrink: 0 }}
         >
-          Add Quiz
+          {t('addQuiz')}
         </Button>
       </Stack>
 
@@ -167,18 +169,18 @@ const MainDashboard = () => {
           <CircularProgress />
         </Box>
       ) : error ? (
-        <Typography color="error">{error}</Typography>
+        <Typography color="error">{t('errorFetching')}</Typography>
       ) : quizzes.length === 0 ? (
-        <Typography>No quizzes available.</Typography>
+        <Typography>{t('noQuizzes')}</Typography>
       ) : (
         <TableContainer component={Paper} elevation={10} sx={{ boxShadow: 4, overflowX: 'auto' }}>
           <Table sx={{ minWidth: 300 }}>
             <TableHead>
               <TableRow sx={{ bgcolor: 'primary.main' }}>
-                <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Title</TableCell>
-                <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Course</TableCell>
+                <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>{t('title')}</TableCell>
+                <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>{t('course')}</TableCell>
                 <TableCell sx={{ color: 'white', fontWeight: 'bold', width: 150 }} align="center">
-                  Actions
+                  {t('actions')}
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -199,14 +201,14 @@ const MainDashboard = () => {
                     <IconButton
                       color="primary"
                       onClick={() => handleOpenDialog(quiz)}
-                      aria-label="edit"
+                      aria-label={t('edit')}
                     >
                       <EditIcon />
                     </IconButton>
                     <IconButton
                       color="error"
                       onClick={() => handleDeleteQuiz(quiz._id)}
-                      aria-label="delete"
+                      aria-label={t('delete')}
                     >
                       <DeleteIcon />
                     </IconButton>
@@ -237,7 +239,7 @@ const MainDashboard = () => {
             paddingX: { xs: 2, sm: 3, md: 4 },
           }}
         >
-          {editingQuiz ? 'Edit Quiz' : 'Add New Quiz'}
+          {editingQuiz ? t('edit') + ' Quiz' : t('addQuiz')}
         </DialogTitle>
         <DialogContent
           sx={{
@@ -249,7 +251,7 @@ const MainDashboard = () => {
           <TextField
             autoFocus
             margin="dense"
-            label="Title"
+            label={t('title')}
             fullWidth
             variant="outlined"
             value={title}
@@ -258,7 +260,7 @@ const MainDashboard = () => {
           />
           <TextField
             margin="dense"
-            label="Course"
+            label={t('course')}
             fullWidth
             variant="outlined"
             value={course}
@@ -268,10 +270,10 @@ const MainDashboard = () => {
         </DialogContent>
         <DialogActions sx={{ paddingX: { xs: 2, sm: 3, md: 4 } }}>
           <Button onClick={handleCloseDialog} color="inherit" sx={{ fontSize: { xs: '0.9rem', sm: '1rem' } }}>
-            Cancel
+            {t('cancel')}
           </Button>
           <Button onClick={handleSaveQuiz} variant="contained" color="primary" sx={{ fontSize: { xs: '0.9rem', sm: '1rem' } }}>
-            {editingQuiz ? 'Update' : 'Add'}
+             {editingQuiz ? t('update') : t('add')}
           </Button>
         </DialogActions>
       </Dialog>
