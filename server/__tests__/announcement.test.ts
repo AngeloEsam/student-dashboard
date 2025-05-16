@@ -11,10 +11,10 @@ beforeAll(async () => {
   });
 });
 
-afterAll(async () => {
-  await mongoose.connection.dropDatabase();
-  await mongoose.connection.close();
-});
+// afterAll(async () => {
+//   await mongoose.connection.dropDatabase();
+//   await mongoose.connection.close();
+// });
 
 describe("Announcement Routes", () => {
   let announcementId: string;

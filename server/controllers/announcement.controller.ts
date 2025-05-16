@@ -4,7 +4,6 @@ import Announcement from "../models/Announcement";
 export const getAllAnnouncements = async (_: Request, res: Response) => {
     try {
         const data = await Announcement.find().sort({ createdAt: -1 });
-        console.log(data)
         res.status(200).json(data);
     } catch (error) {
         res.status(500).json({ message: "Failed to fetch announcements", error });
