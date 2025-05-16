@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
 import Announcement from "../models/Announcement";
 
-// Get all announcements
 export const getAllAnnouncements = async (_: Request, res: Response) => {
     try {
         const data = await Announcement.find().sort({ createdAt: -1 });
+        console.log(data)
         res.status(200).json(data);
     } catch (error) {
         res.status(500).json({ message: "Failed to fetch announcements", error });
     }
 };
 
-// Create a new announcement
+
 export const createAnnouncement = async (req: Request, res: Response) => {
     try {
         const { title, content } = req.body;
@@ -29,7 +29,7 @@ export const createAnnouncement = async (req: Request, res: Response) => {
     }
 };
 
-// Update an announcement
+
 export const updateAnnouncement = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
@@ -48,7 +48,7 @@ export const updateAnnouncement = async (req: Request, res: Response) => {
     }
 };
 
-// Delete an announcement
+
 export const deleteAnnouncement = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
