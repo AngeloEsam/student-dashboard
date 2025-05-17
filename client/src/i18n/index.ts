@@ -8,8 +8,6 @@ i18n.use(initReactI18next).init({
         welcome: "Welcome to Student Dashboard",
         login: "Login",
         logout: "Logout",
-
-        // Dashboard Translations
         quizzesDashboard: "Quizzes Dashboard",
         addQuiz: "Add Quiz",
         title: "Title",
@@ -38,6 +36,13 @@ i18n.use(initReactI18next).init({
         deleteConfirmation: "Are you sure you want to delete this announcement?",
         noAnnouncements: "No announcements available.",
         content: "Content",
+        sidebarDashboard: "Dashboard",
+        sidebarSchedule: "Schedule",
+        sidebarCourses: "Courses",
+        sidebarGradebook: "Gradebook",
+        sidebarPerformance: "Performance",
+        sidebarAnnouncement: "Announcement",
+
       },
     },
     ar: {
@@ -74,6 +79,12 @@ i18n.use(initReactI18next).init({
         deleteConfirmation: "هل أنت متأكد أنك تريد حذف هذا الإعلان؟",
         noAnnouncements: "لا توجد إعلانات متاحة.",
         content: "المحتوى",
+        sidebarDashboard: "لوحة التحكم",
+        sidebarSchedule: "الجدول",
+        sidebarCourses: "المقررات",
+        sidebarGradebook: "سجل الدرجات",
+        sidebarPerformance: "الأداء",
+        sidebarAnnouncement: "الإعلانات",
 
       },
     },

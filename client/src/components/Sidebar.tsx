@@ -20,26 +20,30 @@ import SchoolIcon from '@mui/icons-material/School';
 import GradeIcon from '@mui/icons-material/Grade';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CampaignIcon from '@mui/icons-material/Campaign';
+import { useTranslation } from 'react-i18next';
 
 const drawerWidth = 240;
 
-const menuItems = [
-  { text: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
-  { text: 'Schedule', icon: <ScheduleIcon />, path: 'schedule' },
-  { text: 'Courses', icon: <SchoolIcon />, path: 'courses' },
-  { text: 'Gradebook', icon: <GradeIcon />, path: 'gradebook' },
-  { text: 'Performance', icon: <BarChartIcon />, path: 'performance' },
-  { text: 'Announcement', icon: <CampaignIcon />, path: 'announcement' },
-];
-
 const Sidebar = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md')); // true if screen width <= md breakpoint
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const direction = i18n.dir();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const menuItems = [
+    { text: t('sidebarDashboard'), icon: <DashboardIcon />, path: '/dashboard' },
+    { text: t('sidebarSchedule'), icon: <ScheduleIcon />, path: 'schedule' },
+    { text: t('sidebarCourses'), icon: <SchoolIcon />, path: 'courses' },
+    { text: t('sidebarGradebook'), icon: <GradeIcon />, path: 'gradebook' },
+    { text: t('sidebarPerformance'), icon: <BarChartIcon />, path: 'performance' },
+    { text: t('sidebarAnnouncement'), icon: <CampaignIcon />, path: 'announcement' },
+  ];
 
   const drawerContent = (
     <Box
@@ -92,7 +96,6 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* زر الهامبرغر يظهر فقط في الشاشات الصغيرة */}
       {isMobile && (
         <IconButton
           color="inherit"
@@ -104,14 +107,13 @@ const Sidebar = () => {
           <MenuIcon />
         </IconButton>
       )}
-
-      {/* Drawer ثابت على الشاشات الكبيرة، متحرك على الشاشات الصغيرة */}
       <Drawer
+        anchor={direction === 'rtl' ? 'right' : 'left'}
         variant={isMobile ? 'temporary' : 'permanent'}
         open={isMobile ? mobileOpen : true}
         onClose={handleDrawerToggle}
         ModalProps={{
-          keepMounted: true, // improves performance on mobile
+          keepMounted: true,
         }}
         sx={{
           '& .MuiDrawer-paper': {
